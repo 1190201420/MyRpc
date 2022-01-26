@@ -1,8 +1,8 @@
 # MyRpc
-a simple Rpc-frame learning from JavaGuide and SoundBrother
+A simple Rpc-frame learning from JavaGuide and SoundBrother
 
-files are in the master branch
+Files are in the master branch.
 
-Maybe I will change it to the main branch
+Maybe I will change it to the main branch.
 
-just wait a long time...
+Just wait a long time...
