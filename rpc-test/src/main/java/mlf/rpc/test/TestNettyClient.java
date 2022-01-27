@@ -5,12 +5,10 @@ import mlf.rpc.api.HelloService;
 import mlf.rpc.client.NettyClient;
 import mlf.rpc.client.RpcClient;
 import mlf.rpc.client.RpcClientProxy;
-import mlf.rpc.serializer.KryoSerializer;
 
 public class TestNettyClient {
     public static void main(String[] args) {
         RpcClient client = new NettyClient();
-        client.setSerializer(new KryoSerializer());
         RpcClientProxy rpcClientProxy = new RpcClientProxy(client);
         HelloService helloService = rpcClientProxy.getProxy(HelloService.class);
         HelloObject helloObject = new HelloObject(12, "mlf is so nb");

@@ -4,7 +4,8 @@ import mlf.rpc.entity.RpcRequest;
 import mlf.rpc.serializer.CommonSerializer;
 
 public interface RpcClient {
-    Object sendRequest(RpcRequest rpcRequest);
 
-    void setSerializer(CommonSerializer serializer);
+    int DEFAULT_SERIALIZER = CommonSerializer.KRYO_SERIALIZER;
+
+    Object sendRequest(RpcRequest rpcRequest);
 }

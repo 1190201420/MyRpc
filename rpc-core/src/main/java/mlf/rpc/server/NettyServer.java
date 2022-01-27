@@ -9,6 +9,7 @@ import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 import mlf.rpc.code.CommonDecoder;
 import mlf.rpc.code.CommonEncoder;
+import mlf.rpc.hook.ShutdownHook;
 import mlf.rpc.registry.ServiceProviderImpl;
 import mlf.rpc.registry.NacosServiceRegistry;
 import mlf.rpc.registry.ServiceProvider;
@@ -28,17 +29,19 @@ public class NettyServer implements RpcServer{
 
     private final ServiceProvider serviceProvider;
     private final ServiceRegistry serviceRegistry;
-    private CommonSerializer serializer;
+    private final CommonSerializer serializer;
 
-    public NettyServer(String host, int port) {
+    public NettyServer(String host, int port, Integer serializer) {
         this.host = host;
         this.port = port;
         serviceProvider = new ServiceProviderImpl();
         serviceRegistry = new NacosServiceRegistry();
+        this.serializer = CommonSerializer.getByCode(serializer);
     }
 
     @Override
     public void start() {
+        ShutdownHook.getShutdownHook().addClearAllHook();
         EventLoopGroup bossGroup = new NioEventLoopGroup();
         EventLoopGroup workerGroup = new NioEventLoopGroup();
         try {
@@ -72,11 +75,6 @@ public class NettyServer implements RpcServer{
     public <T> void publishService(Object service, Class<T> serviceClass) {
         serviceProvider.addServiceProvider(service);
         serviceRegistry.register(serviceClass.getCanonicalName(), new InetSocketAddress(host, port));
-    }
-
-    @Override
-    public void setSerializer(CommonSerializer serializer) {
-        this.serializer = serializer;
     }
 
 }
