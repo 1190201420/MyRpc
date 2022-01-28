@@ -1,5 +1,6 @@
 package mlf.rpc.test;
 
+import mlf.rpc.api.ByeService;
 import mlf.rpc.api.HelloObject;
 import mlf.rpc.api.HelloService;
 import mlf.rpc.client.NettyClient;
@@ -14,5 +15,7 @@ public class TestNettyClient {
         HelloObject helloObject = new HelloObject(12, "mlf is so nb");
         String res = helloService.hello(helloObject);
         System.out.println(res);
+        ByeService byeService = rpcClientProxy.getProxy(ByeService.class);
+        System.out.println(byeService.bye("Netty"));
     }
 }
