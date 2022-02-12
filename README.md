@@ -11,7 +11,7 @@ Just wait a long time...
 
 好的不用等了，我好像弄不过来，摆了。
 
-说白了就是个简单的Rpc框架，按照声哥的教程写的（抄的）。
+说白了就是个简单的Rpc框架，按照声哥的教程写的。
 
 声哥的项目地址：https://github.com/CN-GuoZiyang/My-RPC-Framework
 
